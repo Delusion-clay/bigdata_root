@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cn.wifi</groupId>
+  <artifactId>bigdata_root</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>bigdata_resources</module>
+      <module>bigdata_common</module>
+      <module>bigdata_flume</module>
+        <module>bigdata_kafka</module>
+        <module>bigdata_spark</module>
+        <module>bigdata_redis</module>
+        <module>bigdata_es</module>
+    </modules>
+
+    <name>bigdata_root</name>
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <cdh.version>cdh6.3.0</cdh.version>
+  </properties>
+  <repositories>
+    <repository>
+      <id>mvn-cdh</id>
+      <url>https://mvnrepository.com/artifact</url>
+    </repository>
+    <repository>
+      <id>maven-ali</id>
+      <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+    </repository>
+    <repository>
+      <id>maven-ali-scm</id>
+      <url>https://repo.rdc.aliyun.com/repository/82963-release-FnoWLy/</url>
+    </repository>
+    <repository>
+      <id>cloudera</id>
+      <url>http://repository.cloudera.com/artifactory/cloudera-repos/</url>
+    </repository>
+  </repositories>
+  <dependencies>
+  </dependencies>
+</project>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cn.wifi</groupId>
+  <artifactId>bigdata_spark</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>bigdata_spark</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spark.version>2.4.0</spark.version>
+  </properties>
+  <repositories>
+    <repository>
+      <id>scala-tools.org1</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </repository>
+    <repository>
+      <id>scala-tools.org2</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>http://maven.restlet.org/</url>
+    </repository>
+    <repository>
+      <id>scala-tools.org3</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>https://repository.cloudera.com/content/repositories/releases/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.cn.wifi</groupId>
+      <artifactId>bigdata_common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.cn.wifi</groupId>
+      <artifactId>bigdata_es</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.cn.wifi</groupId>
+      <artifactId>bigdata_resources</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.cn.wifi</groupId>
+      <artifactId>bigdata_redis</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_2.11</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming_2.11</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.11</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-hive_2.11</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.elasticsearch</groupId>
+      <artifactId>elasticsearch-spark-20_2.11</artifactId>
+      <version>6.2.3</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+<!--      <plugin>-->
+<!--        <groupId>org.scala-tools</groupId>-->
+<!--        <artifactId>maven-scala-plugin</artifactId>-->
+<!--        <version>2.15.2</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>scala-compile</id>-->
+<!--            <goals>-->
+<!--              <goal>compile</goal>-->
+<!--              <goal>testCompile</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
+
+      <plugin><!--打包依赖的jar包-->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <outputDirectory>${project.build.directory}/lib</outputDirectory>
+          <excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
+          <stripVersion>false</stripVersion> <!-- 去除版本信息 -->
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <!-- 拷贝项目依赖包到lib/目录下 -->
+              <outputDirectory>${project.build.directory}/jars</outputDirectory>
+              <excludeTransitive>false</excludeTransitive>
+              <stripVersion>false</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
